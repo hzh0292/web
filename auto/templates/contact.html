@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>联系我们</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            background:url("{{ static_url('img/xk.jpg')}}");
+        }
+        .lianxi{
+            width:700px;
+            height:500px;
+            margin: 200px auto;
+            border:1px solid blue;
+            background-color: yellowgreen;
+            margin: 30px auto;
+        }
+        .lianxi p {
+            margin:  100px auto;
+        }
+        .txt{
+            font-size: 50px;
+            color:black;
+        }
+		body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+    </style>
+</head>
+<body>
+    
+    <div class="lianxi">
+        <div class="txt">
+            <p>林利私人订制工作室</p>
+            <p>电话:17680162589</p>
+        </div>
+    </div>
+    <div id="allmap"></div>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KKTCyN5OEbOfe7GmszGz4vu3sEt9KSpk"></script>
+    <title>地址解析</title>
+    <script type="text/javascript">
+        // 百度地图API功能
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(114.034057,22.565269);
+        map.centerAndZoom(point,12);
+        // 创建地址解析器实例
+        var myGeo = new BMap.Geocoder();
+        // 将地址解析结果显示在地图上,并调整地图视野
+        myGeo.getPoint("广东深深圳市福田区下梅林金来达汽配城", function(point){
+            if (point) {
+                map.centerAndZoom(point, 16);
+                map.addOverlay(new BMap.Marker(point));
+            }else{
+                alert("您选择地址没有解析到结果!");
+            }
+        }, "深圳市");
+    </script>
+</body>
+</html>
